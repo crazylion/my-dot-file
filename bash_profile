@@ -1,4 +1,4 @@
- export PATH=~/bin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin
+ export PATH=~/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin
  export HISTCONTROL=ignoredups
  alias gpsgo="cd ~/projects/gpsgo && mate . && script/server"
 
@@ -9,4 +9,5 @@ PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 alias mate='open -a TextMate.app'
 alias man='PAGER=most man'
 alias mates='mate . && script/server'
+alias push='git push'
 export export HISTTIMEFORMAT='%F %T '
