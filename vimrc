@@ -4,4 +4,5 @@ syntax on
 set tabstop=4 
 nnoremap <silent> <F5> :NERDTree<CR>
 set background=dark
-
+set backupdir=~/.vimtmp//
+set directory=~/.vimtmp//
