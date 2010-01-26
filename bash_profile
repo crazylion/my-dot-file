@@ -10,4 +10,5 @@ alias mate='open -a TextMate.app'
 alias man='PAGER=most man'
 alias mates='mate . && script/server'
 alias push='git push'
-export export HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT='%F %T '
+export PS1="\u@\h \w>"
