@@ -1,4 +1,4 @@
- export PATH=~/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin
+ export PATH=~/bin:~/perl5/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin
  export HISTCONTROL=ignoredups
  alias gpsgo="cd ~/projects/gpsgo && mate . && script/server"
 
