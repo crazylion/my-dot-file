@@ -14,6 +14,7 @@ let g:scomment_default_mapping = 1
 nmap <leader>G   :ToggleGitMenu<CR>
 imap { {}<left>
 imap ( ()<left>
+imap ;; <Esc>
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
