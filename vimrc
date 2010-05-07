@@ -26,3 +26,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 :nmap <Space> <PageDown>
 :vmap <BS> x
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+
