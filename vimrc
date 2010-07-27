@@ -2,6 +2,7 @@ set nu
 set ai
 syntax on
 set tabstop=4 
+set shiftwidth=4
 set expandtab 
 filetype plugin on
 filetype indent on
@@ -24,6 +25,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType actionscript set omnifunc=ccomplete#Complete
 :nmap <Space> <PageDown>
 :vmap <BS> x
 let g:xml_syntax_folding=1
