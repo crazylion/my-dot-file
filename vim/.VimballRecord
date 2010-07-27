@@ -1,0 +1,1 @@
+conque_1.1.vba: call delete('/Users/crazylion/.vim/autoload/conque_term.vim')|call delete('/Users/crazylion/.vim/doc/conque_term.txt')|call delete('/Users/crazylion/.vim/plugin/conque_term.vim')|call delete('/Users/crazylion/.vim/syntax/conque_term.vim')
