@@ -12,6 +12,7 @@ set backupdir=~/.vimtmp//
 set directory=~/.vimtmp//
 let g:scomment_default_mapping = 1
 nmap <leader>G   :ToggleGitMenu<CR>
+nmap ca :Calendar <cr>
 imap { {}<left>
 imap ( ()<left>
 imap [ []<left>
