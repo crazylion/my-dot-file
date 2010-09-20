@@ -4,10 +4,14 @@ syntax on
 set tabstop=4 
 set shiftwidth=4
 set expandtab 
+set showmatch
+set title " change the terminal's title
+filetype on
 filetype plugin on
 filetype indent on
 nnoremap <silent> <F7> :NERDTree<CR>
 nnoremap <silent> <F5> :TlistToggle<CR>
+nnoremap ; :
 set background=dark
 set backupdir=~/.vimtmp//
 set directory=~/.vimtmp//
