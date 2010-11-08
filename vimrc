@@ -35,4 +35,3 @@ autocmd FileType actionscript set omnifunc=ccomplete#Complete
 :vmap <BS> x
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
-
