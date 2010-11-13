@@ -37,6 +37,9 @@ autocmd FileType actionscript set omnifunc=ccomplete#Complete
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
+" search
+set incsearch
+
 " status bar
 set laststatus=2
 set statusline=%4*%<\ %1*[%F]
