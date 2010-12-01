@@ -6,6 +6,7 @@ set shiftwidth=4
 set expandtab 
 set showmatch
 set title " change the terminal's title
+set encoding=utf8
 filetype on
 filetype plugin on
 filetype indent on
