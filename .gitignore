@@ -1,2 +1,3 @@
 Makefile
 vim/sessions/*
+vim/ruby/command-t/ext.so
