@@ -1,4 +1,4 @@
- export PATH=/usr/local/lib/cw:~/bin:~/perl5/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin:~/bin/android-sdk-mac_86/tools
+ export PATH=/Users/crazylion/projects/utilities/bin:/usr/local/lib/cw:~/bin:~/perl5/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin:~/bin/android-sdk-mac_86/tools
  export HISTCONTROL=ignoredups
  alias gpsgo="cd ~/projects/gpsgo && mate . && script/server"
 

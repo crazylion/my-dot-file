@@ -6,6 +6,13 @@ set shiftwidth=4
 set expandtab 
 set showmatch
 set title " change the terminal's title
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+set nobackup
+set noswapfile 
+set directory=~/.vim/tmp
+set backupdir=~/.vim/tmp
 filetype on
 filetype plugin on
 filetype indent on
@@ -13,8 +20,6 @@ nnoremap <silent> <F7> :NERDTree<CR>
 nnoremap <silent> <F5> :TlistToggle<CR>
 nnoremap ; :
 set background=dark
-set backupdir=~/.vimtmp//
-set directory=~/.vimtmp//
 let g:scomment_default_mapping = 1
 nmap <leader>G   :ToggleGitMenu<CR>
 nmap ca :Calendar <cr>
