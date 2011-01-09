@@ -1,4 +1,4 @@
- export PATH=/Users/crazylion/projects/utilities/bin:/usr/local/lib/cw:~/bin:~/perl5/bin:/usr/local/nginx/sbin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin:~/bin/android-sdk-mac_86/tools
+ export PATH=/Users/crazylion/projects/utilities/bin:/usr/local/lib/cw:~/bin:~/perl5/bin:/usr/local/nginx/sbin:/usr/local/bin:$PATH:~/bin/jruby-1.1/bin:/opt/local/bin:~/bin/android-sdk-mac_86/tools
  export HISTCONTROL=ignoredups
  alias gpsgo="cd ~/projects/gpsgo && mate . && script/server"
 
@@ -7,7 +7,7 @@
 PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 #export PATH
 alias mate='open -a TextMate.app'
-alias man='PAGER=most man'
+# alias man='PAGER=most man'
 alias mates='mate . && script/server'
 alias push='git push'
 export HISTTIMEFORMAT='%F %T '
