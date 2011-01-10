@@ -12,3 +12,4 @@ alias mates='mate . && script/server'
 alias push='git push'
 export HISTTIMEFORMAT='%F %T '
 export PS1="\u@\h \w>"
+alias lsr="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
