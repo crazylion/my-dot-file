@@ -17,7 +17,6 @@ filetype on
 filetype plugin on
 filetype indent on
 nnoremap <silent> <F7> :NERDTree<CR>
-nnoremap <silent> <F5> :TlistToggle<CR>
 nnoremap ; :
 set background=dark
 let g:scomment_default_mapping = 1
@@ -63,3 +62,8 @@ highlight User3 term=underline cterm=underline ctermfg=yellow
 highlight User4 term=underline cterm=underline ctermfg=white
 highlight User5 ctermfg=cyan
 highlight User6 ctermfg=white 
+
+
+" tagbar setting
+nnoremap <silent> <F5> :TagbarToggle<CR> <C-W> <left>
+let g:tagbar_left=1
