@@ -12,10 +12,8 @@ alias mates='mate . && script/server'
 alias push='git push'
 export HISTTIMEFORMAT='%F %T '
 export PS1="\u@\h \w>"
-<<<<<<< HEAD
-
 source ~/.localrc
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
-=======
 alias lsr="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
->>>>>>> 038522a50770258a92e2539212390b9abb43e1cd
+
+. ~/.localrc

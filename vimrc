@@ -6,7 +6,6 @@ set shiftwidth=4
 set expandtab 
 set showmatch
 set title " change the terminal's title
-<<<<<<< HEAD
 set encoding=utf-8
 set fileencoding=utf-8
 set termencoding=utf-8
@@ -14,9 +13,6 @@ set nobackup
 set noswapfile 
 set directory=~/.vim/tmp
 set backupdir=~/.vim/tmp
-=======
-set encoding=utf8
->>>>>>> 038522a50770258a92e2539212390b9abb43e1cd
 filetype on
 filetype plugin on
 filetype indent on
