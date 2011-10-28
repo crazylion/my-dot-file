@@ -67,3 +67,11 @@ highlight User6 ctermfg=white
 " tagbar setting
 nnoremap <silent> <F5> :TagbarToggle<CR> <C-W> <left>
 let g:tagbar_left=1
+
+" load template
+function LoadHtmlMain()
+    0r ~/.vim/template/blank.html
+    normal Gddkk
+endfunction
+
+autocmd BufNewFile *.html call LoadHtmlMain()
