@@ -69,6 +69,7 @@ nnoremap <silent> <F5> :TagbarToggle<CR> <C-W> <left>
 let g:tagbar_left=1
 
 " load template
+"  ref:https://github.com/fcamel/configs/commit/7a37bc27f108769cdc7b00ba17dd41d7ecd3d2fe
 function LoadHtmlMain()
     0r ~/.vim/template/blank.html
     normal Gddkk
