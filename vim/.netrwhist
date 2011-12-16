@@ -1,2 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/users/crazylion/projects/flv_mainpage/flv-layout/sass'
+let g:netrw_dirhist_2='/Users/crazylion/projects/travel_maker/src/public/javascripts/packer/core'

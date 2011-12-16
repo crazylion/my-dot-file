@@ -16,4 +16,8 @@ source ~/.localrc
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # Load RVM into a shell session *as a function*
 alias lsr="ls -R | grep \":$\" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 
+if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash  ]; then
+  . `brew --prefix`/etc/bash_completion.d/git-completion.bash 
+fi
+
 . ~/.localrc
