@@ -1,6 +1,8 @@
 set nu
 set ai
 syntax on
+let g:solarized_termcolors=256
+colorscheme solarized
 set tabstop=4 
 set shiftwidth=4
 set expandtab 
