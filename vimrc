@@ -1,3 +1,4 @@
+call pathogen#infect()
 set nu
 set ai
 syntax on
