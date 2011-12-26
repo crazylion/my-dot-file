@@ -1,8 +1,6 @@
 set nu
 set ai
 syntax on
-let g:solarized_termcolors=256
-colorscheme solarized
 set tabstop=4 
 set shiftwidth=4
 set expandtab 
@@ -29,6 +27,8 @@ imap ( ()<left>
 imap [ []<left>
 imap jj <Esc>
 imap <C-f> <C-x><C-o>
+
+
 
 " php documentor binding
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
