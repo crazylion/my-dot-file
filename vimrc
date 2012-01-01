@@ -19,8 +19,9 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle "scrooloose/nerdtree"
 Bundle "mattn/zencoding-vim"
+Bundle "vim-scripts/vimwiki"
+Bundle "vim-scripts/AutoComplPop"
 " non github repos
-Bundle "git://github.com/vim-scripts/AutoComplPop.git"
 
 filetype plugin indent on     " required! 
 call pathogen#infect()
