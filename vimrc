@@ -21,6 +21,7 @@ Bundle "scrooloose/nerdtree"
 Bundle "mattn/zencoding-vim"
 Bundle "vim-scripts/vimwiki"
 Bundle "vim-scripts/AutoComplPop"
+Bundle "kien/ctrlp.vim"
 " non github repos
 
 filetype plugin indent on     " required! 

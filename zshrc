@@ -35,3 +35,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/Users/crazylion/.rvm/gems/ruby-1.9.2-p290/bin:/Users/crazylion/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/crazylion/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/crazylion/.rvm/bin:/usr/local/bin:/Users/crazylion/bin:/usr/local/nginx/sbin:/usr/local/git/bin:/usr/local/bin:/usr/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
