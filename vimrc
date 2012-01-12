@@ -23,6 +23,7 @@ Bundle "vim-scripts/vimwiki"
 Bundle "vim-scripts/AutoComplPop"
 Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
+Bundle "sickill/vim-pasta"
 " non github repos
 
 filetype plugin indent on     " required! 
