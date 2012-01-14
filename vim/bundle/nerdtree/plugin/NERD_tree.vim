@@ -1872,6 +1872,25 @@ endfunction
 "CLASS: Opener {{{2
 "============================================================
 let s:Opener = {}
+
+"FUNCTION: Opener._checkToCloseTree(newtab) {{{3
+"Check the class options and global options (i.e. NERDTreeQuitOnOpen) to see
+"if the tree should be closed now.
+"
+"Args:
+"a:newtab - boolean. If set, only close the tree now if we are opening the
+"target in a new tab. This is needed because we have to close tree before we
+"leave the tab
+function! s:Opener._checkToCloseTree(newtab)
+    if self._keepopen
+        return
+    endif
+
+    if (a:newtab && self._where == 't') || !a:newtab
+        call s:closeTreeIfQuitOnOpen()
+    endif
+endfunction
+
 "FUNCTION: Opener._gotoTargetWin() {{{3
 function! s:Opener._gotoTargetWin()
     if b:NERDTreeType ==# "secondary"
@@ -1883,6 +1902,7 @@ function! s:Opener._gotoTargetWin()
             tabnew
         endif
     else
+        call self._checkToCloseTree(1)
 
         if self._where == 'v'
             call self._newVSplit()
@@ -1893,6 +1913,8 @@ function! s:Opener._gotoTargetWin()
         elseif self._where == 'p'
             call self._previousWindow()
         endif
+
+        call self._checkToCloseTree(0)
     endif
 endfunction
 
@@ -1918,6 +1940,7 @@ function! s:Opener.New(path, opts)
     let newObj._reuse = s:has_opt(a:opts, 'reuse')
     let newObj._keepopen = s:has_opt(a:opts, 'keepopen')
     let newObj._where = has_key(a:opts, 'where') ? a:opts['where'] : ''
+    let newObj._treetype = b:NERDTreeType
     call newObj._saveCursorPos()
 
     return newObj
@@ -2014,16 +2037,13 @@ function! s:Opener._openFile()
         return
     endif
 
-    if b:NERDTreeType ==# "secondary"
-        call self._gotoTargetWin()
+    call self._gotoTargetWin()
+
+    if self._treetype ==# "secondary"
         call self._path.edit()
     else
-        call self._gotoTargetWin()
         call self._path.edit()
 
-        if self._keepopen
-            call s:closeTreeIfQuitOnOpen()
-        endif
 
         if self._stay
             call self._restoreCursorPos()
@@ -2033,7 +2053,7 @@ endfunction
 
 "FUNCTION: Opener._openDirectory(node) {{{3
 function! s:Opener._openDirectory(node)
-    if b:NERDTreeType ==# "secondary"
+    if self._treetype ==# "secondary"
         call self._gotoTargetWin()
         call s:initNerdTreeInPlace(a:node.path.str())
     else
@@ -2086,11 +2106,13 @@ function! s:Opener._reuseWindow()
     let winnr = bufwinnr('^' . self._path.str() . '$')
     if winnr != -1
         call s:exec(winnr . "wincmd w")
+        call self._checkToCloseTree(0)
         return 1
     else
         "check other tabs
         let tabnr = self._path.tabnr()
         if tabnr
+            call self._checkToCloseTree(1)
             call s:exec('normal! ' . tabnr . 'gt')
             let winnr = bufwinnr('^' . self._path.str() . '$')
             call s:exec(winnr . "wincmd w")
@@ -2521,6 +2543,16 @@ function! s:Path.Slash()
     return s:running_windows ? '\' : '/'
 endfunction
 
+"FUNCTION: Path.Resolve() {{{3
+"Invoke the vim resolve() function and return the result
+"This is necessary because in some versions of vim resolve() removes trailing
+"slashes while in other versions it doesn't.  This always removes the trailing
+"slash
+function! s:Path.Resolve(path)
+    let tmp = resolve(a:path)
+    return tmp =~# '/$' ? substitute(tmp, '/$', '', '') : tmp
+endfunction
+
 "FUNCTION: Path.readInfoFromDisk(fullpath) {{{3
 "
 "
@@ -2555,12 +2587,12 @@ function! s:Path.readInfoFromDisk(fullpath)
     let lastPathComponent = self.getLastPathComponent(0)
 
     "get the path to the new node with the parent dir fully resolved
-    let hardPath = resolve(self.strTrunk()) . lastPathComponent
+    let hardPath = s:Path.Resolve(self.strTrunk()) . '/' . lastPathComponent
 
     "if  the last part of the path is a symlink then flag it as such
-    let self.isSymLink = (resolve(hardPath) != hardPath)
+    let self.isSymLink = (s:Path.Resolve(hardPath) != hardPath)
     if self.isSymLink
-        let self.symLinkDest = resolve(fullpath)
+        let self.symLinkDest = s:Path.Resolve(fullpath)
 
         "if the link is a dir then slap a / on the end of its dest
         if isdirectory(self.symLinkDest)
@@ -2733,13 +2765,9 @@ function! s:Path._str()
 endfunction
 
 "FUNCTION: Path.strTrunk() {{{3
-"Gets the path without the last segment on the end, always with an endslash
+"Gets the path without the last segment on the end.
 function! s:Path.strTrunk()
-    let toReturn = self.drive . '/' . join(self.pathSegments[0:-2], '/')
-    if toReturn !~# '\/$'
-        let toReturn .= '/'
-    endif
-    return toReturn
+    return self.drive . '/' . join(self.pathSegments[0:-2], '/')
 endfunction
 
 " FUNCTION: Path.tabnr() {{{3
@@ -2842,7 +2870,6 @@ function! s:createDefaultBindings()
     call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'scope': "FileNode", 'callback': s."activateFileNode" })
     call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'scope': "Bookmark", 'callback': s."activateBookmark" })
     call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapActivateNode, 'scope': "all", 'callback': s."activateAll" })
-    exec "nnoremap <silent> <buffer> <cr> :call <SID>KeyMap_Invoke('". g:NERDTreeMapActivateNode ."')<cr>"
 
     call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapOpenSplit, 'scope': "Node", 'callback': s."openHSplit" })
     call NERDTreeAddKeyMap({ 'key': g:NERDTreeMapOpenVSplit, 'scope': "Node", 'callback': s."openVSplit" })
@@ -2975,7 +3002,7 @@ function! s:initNerdTree(name)
         if dir =~# '^\.'
             let dir = getcwd() . s:Path.Slash() . dir
         endif
-        let dir = resolve(dir)
+        let dir = s:Path.Resolve(dir)
 
         try
             let path = s:Path.New(dir)
@@ -3920,6 +3947,9 @@ endfunction
 
 "FUNCTION: s:bindMappings() {{{2
 function! s:bindMappings()
+    "make <cr> do the same as the default 'o' mapping
+    exec "nnoremap <silent> <buffer> <cr> :call <SID>KeyMap_Invoke('". g:NERDTreeMapActivateNode ."')<cr>"
+
     call s:KeyMap.BindAll()
 
     command! -buffer -nargs=? Bookmark :call <SID>bookmarkNode('<args>')
@@ -4189,19 +4219,18 @@ endfunction
 
 "FUNCTION: s:previewNodeCurrent(node) {{{2
 function! s:previewNodeCurrent(node)
-    call a:node.open({'stay': 1, 'where': 'p'})
+    call a:node.open({'stay': 1, 'where': 'p', 'keepopen': 1})
 endfunction
 
 "FUNCTION: s:previewNodeHSplit(node) {{{2
 function! s:previewNodeHSplit(node)
-    call a:node.open({'stay': 1, 'where': 'h'})
+    call a:node.open({'stay': 1, 'where': 'h', 'keepopen': 1})
 endfunction
 
 "FUNCTION: s:previewNodeVSplit(node) {{{2
 function! s:previewNodeVSplit(node)
-    call a:node.open({'stay': 1, 'where': 'v'})
+    call a:node.open({'stay': 1, 'where': 'v', 'keepopen': 1})
 endfunction
-
 
 " FUNCTION: s:revealBookmark(name) {{{2
 " put the cursor on the node associate with the given name
