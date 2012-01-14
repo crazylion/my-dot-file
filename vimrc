@@ -24,7 +24,6 @@ Bundle "vim-scripts/AutoComplPop"
 Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
 Bundle "sickill/vim-pasta"
-Bundle "skammer/vim-css-color"
 " non github repos
 
 filetype plugin indent on     " required! 
