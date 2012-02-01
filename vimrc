@@ -24,6 +24,7 @@ Bundle "vim-scripts/AutoComplPop"
 Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
 Bundle "sickill/vim-pasta"
+Bundle "vim-scripts/Tagbar"
 " non github repos
 
 filetype plugin indent on     " required! 
@@ -93,6 +94,7 @@ highlight User6 ctermfg=white
 
 
 " tagbar setting
+let g:tagbar_ctags_bin="/usr/local/bin/ctags"
 nnoremap <silent> <F5> :TagbarToggle<CR> <C-W> <left>
 let g:tagbar_left=1
 
