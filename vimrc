@@ -25,6 +25,7 @@ Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
 Bundle "sickill/vim-pasta"
 Bundle "vim-scripts/Tagbar"
+Bundle "jelera/vim-javascript-syntax"
 " non github repos
 
 filetype plugin indent on     " required! 
