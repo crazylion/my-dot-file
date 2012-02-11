@@ -25,6 +25,7 @@ Bundle "Lokaltog/vim-powerline"
 Bundle "sickill/vim-pasta"
 Bundle "vim-scripts/Tagbar"
 Bundle "jelera/vim-javascript-syntax"
+Bundle "Raimondi/delimitMate"
 " non github repos
 
 filetype plugin indent on     " required! 
@@ -53,9 +54,9 @@ set background=dark
 let g:scomment_default_mapping = 1
 nmap <leader>G   :ToggleGitMenu<CR>
 nmap ca :Calendar <cr>
-imap { {}<left>
-imap ( ()<left>
-imap [ []<left>
+"imap { {}<left>
+"imap ( ()<left>
+"imap [ []<left>
 imap jj <Esc>
 imap <C-f> <C-x><C-o>
 
