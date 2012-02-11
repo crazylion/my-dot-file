@@ -16,7 +16,6 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
 Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle "scrooloose/nerdtree"
 Bundle "mattn/zencoding-vim"
 Bundle "vim-scripts/vimwiki"
