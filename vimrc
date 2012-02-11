@@ -85,12 +85,6 @@ set incsearch
 
 " status bar
 set laststatus=2
-highlight User1 ctermfg=red
-highlight User2 term=underline cterm=underline ctermfg=green
-highlight User3 term=underline cterm=underline ctermfg=yellow
-highlight User4 term=underline cterm=underline ctermfg=white
-highlight User5 ctermfg=cyan
-highlight User6 ctermfg=white 
 
 
 " tagbar setting
