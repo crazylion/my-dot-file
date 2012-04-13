@@ -26,6 +26,9 @@ Bundle "sickill/vim-pasta"
 Bundle "vim-scripts/Tagbar"
 Bundle "jelera/vim-javascript-syntax"
 Bundle "Raimondi/delimitMate"
+Bundle "tpope/vim-surround"
+Bundle "tpope/vim-repeat"
+Bundle "cakebaker/scss-syntax.vim"
 " non github repos
 
 filetype plugin indent on     " required! 
@@ -104,3 +107,5 @@ autocmd BufNewFile *.html call LoadHtmlMain()
 " powerline
 let g:Powerline_symbols = 'fancy'
 set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
+
+
