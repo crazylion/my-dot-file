@@ -29,7 +29,12 @@ Bundle "Raimondi/delimitMate"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "cakebaker/scss-syntax.vim"
+Bundle "nathanaelkane/vim-indent-guides"
 " non github repos
+"
+" for vim-indent-guides
+let g:indent_guides_guide_size=1
+
 
 filetype plugin indent on     " required! 
 call pathogen#infect()
