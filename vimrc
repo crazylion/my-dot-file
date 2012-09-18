@@ -30,6 +30,7 @@ Bundle "tpope/vim-surround"
 Bundle "tpope/vim-repeat"
 Bundle "cakebaker/scss-syntax.vim"
 Bundle "nathanaelkane/vim-indent-guides"
+Bundle "troydm/easybuffer.vim"
 " non github repos
 "
 " for vim-indent-guides
