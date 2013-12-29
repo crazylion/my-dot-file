@@ -16,7 +16,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
 Bundle 'L9'
-Bundle "scrooloose/nerdtree"
+"Bundle "scrooloose/nerdtree"
+Bundle "tpope/vim-vinegar"
 Bundle "mattn/zencoding-vim"
 Bundle "vim-scripts/vimwiki"
 Bundle "vim-scripts/AutoComplPop"
@@ -31,6 +32,16 @@ Bundle "tpope/vim-repeat"
 Bundle "cakebaker/scss-syntax.vim"
 Bundle "nathanaelkane/vim-indent-guides"
 Bundle "troydm/easybuffer.vim"
+Bundle "jnwhiteh/vim-golang"
+Bundle "airblade/vim-gitgutter"
+Bundle "c9s/simple-commenter.vim"
+Bundle "junegunn/vim-easy-align"
+
+"vim-snipmate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+"Bundle "honza/snipmate-snippets"
+Bundle "garbas/vim-snipmate"
 " non github repos
 "
 " for vim-indent-guides
@@ -99,7 +110,7 @@ set laststatus=2
 
 " tagbar setting
 let g:tagbar_ctags_bin="/usr/local/bin/ctags"
-nnoremap <silent> <F5> :TagbarToggle<CR> <C-W> <left>
+nnoremap <silent> <F8> :TagbarToggle<CR> <C-W> <left>
 let g:tagbar_left=1
 
 " load template
@@ -113,5 +124,3 @@ autocmd BufNewFile *.html call LoadHtmlMain()
 " powerline
 let g:Powerline_symbols = 'fancy'
 set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
-
-
