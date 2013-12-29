@@ -18,6 +18,7 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'L9'
 "Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-vinegar"
+Bundle "goldfeld/vim-seek"
 Bundle "mattn/zencoding-vim"
 Bundle "vim-scripts/vimwiki"
 Bundle "vim-scripts/AutoComplPop"
