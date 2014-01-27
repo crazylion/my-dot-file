@@ -6,7 +6,6 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
 
 " My Bundles here:
 "
@@ -19,7 +18,7 @@ Bundle 'L9'
 "Bundle "scrooloose/nerdtree"
 Bundle "tpope/vim-vinegar"
 Bundle "goldfeld/vim-seek"
-Bundle "mattn/zencoding-vim"
+Bundle "mattn/emmet-vim"
 Bundle "vim-scripts/vimwiki"
 Bundle "vim-scripts/AutoComplPop"
 Bundle "kien/ctrlp.vim"

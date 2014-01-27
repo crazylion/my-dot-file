@@ -29,11 +29,25 @@ ZSH_THEME="gentoo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby rails)
+plugins=(git ruby rails zsh-syntax-highlighting)
+LANG=zh_TW.UTF-8
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
-[[ -s "/Users/crazylion/.rvm/scripts/rvm" ]] && source "/Users/crazylion/.rvm/scripts/rvm" # Load RVM into a shell session *as a function
+#PATH=/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/Qt5.0.0/5.0.0/clang_64/bin:$PATH
+PATH=/usr/local/git/bin:/usr/local/bin:/usr/X11/bin:$PATH:/usr/local/share/npm/bin:/Users/crazylion/bin
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+export GOROOT=/usr/local/go
+#  export GOPATH=~/go
+#alias bower=/usr/local/share/npm/lib/node_modules/bower/bin/bower
+
+export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/Users/crazylion/.gvm/bin/gvm-init.sh" ]] && source "/Users/crazylion/.gvm/bin/gvm-init.sh"
