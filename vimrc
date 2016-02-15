@@ -1,126 +1,77 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-"Bundle "scrooloose/nerdtree"
-Bundle "tpope/vim-vinegar"
-Bundle "goldfeld/vim-seek"
-Bundle "mattn/emmet-vim"
-Bundle "vim-scripts/vimwiki"
-Bundle "vim-scripts/AutoComplPop"
-Bundle "kien/ctrlp.vim"
-Bundle "Lokaltog/vim-powerline"
-Bundle "sickill/vim-pasta"
-Bundle "vim-scripts/Tagbar"
-Bundle "jelera/vim-javascript-syntax"
-Bundle "Raimondi/delimitMate"
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-repeat"
-Bundle "cakebaker/scss-syntax.vim"
-Bundle "nathanaelkane/vim-indent-guides"
-Bundle "troydm/easybuffer.vim"
-Bundle "jnwhiteh/vim-golang"
-Bundle "airblade/vim-gitgutter"
-Bundle "c9s/simple-commenter.vim"
-Bundle "junegunn/vim-easy-align"
-
-"vim-snipmate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-"Bundle "honza/snipmate-snippets"
-Bundle "garbas/vim-snipmate"
-" non github repos
-"
-" for vim-indent-guides
-let g:indent_guides_guide_size=1
-
-
-filetype plugin indent on     " required! 
-call pathogen#infect()
-set nu
+let mapleader=","       " leader is comma
+" ref: http://dougblack.io/words/a-good-vimrc.html
+syntax enable   
+set tabstop=2       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set expandtab       " tabs are spaces
+set number              " show line numbers
 set ai
-syntax on
-set tabstop=4 
-set shiftwidth=4
-set expandtab 
-set showmatch
-set title " change the terminal's title
-set encoding=utf-8
-set fileencoding=utf-8
-set termencoding=utf-8
-set nobackup
-set noswapfile 
-set directory=~/.vim/tmp
-set backupdir=~/.vim/tmp
-filetype on
-filetype plugin on
-filetype indent on
-nnoremap <silent> <F7> :NERDTree<CR>
-nnoremap ; :
-set background=dark
-let g:scomment_default_mapping = 1
-nmap <leader>G   :ToggleGitMenu<CR>
-nmap ca :Calendar <cr>
-"imap { {}<left>
-"imap ( ()<left>
-"imap [ []<left>
-imap jj <Esc>
-imap <C-f> <C-x><C-o>
+set cursorline          " highlight current line
+filetype indent on      " load filetype-specific indent files
+set wildmenu            " visual autocomplete for command menu
+set lazyredraw          " redraw only when we need to.
+set showmatch           " highlight matching [{()}]
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+nnoremap <leader><space> :nohlsearch<CR>
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+nnoremap <space> za
+set foldmethod=indent   " fold based on indent level
+
+nnoremap j gj
+nnoremap k gk
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+nnoremap gV `[v`]
+
+inoremap jj <esc>
+nnoremap <silent><F7> :NERDTree<CR>
 
 
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
 
-" php documentor binding
-inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-P> :call PhpDocSingle()<CR> 
-vnoremap <C-P> :call PhpDocRange()<CR> 
-
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType htm set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType actionscript set omnifunc=ccomplete#Complete
-:nmap <Space> <PageDown>
-:vmap <BS> x
-let g:xml_syntax_folding=1
-au FileType xml setlocal foldmethod=syntax
-
-" search
-set incsearch
-
-" status bar
 set laststatus=2
 
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
-" tagbar setting
-let g:tagbar_ctags_bin="/usr/local/bin/ctags"
-nnoremap <silent> <F8> :TagbarToggle<CR> <C-W> <left>
-let g:tagbar_left=1
 
-" load template
-"  ref:https://github.com/fcamel/configs/commit/7a37bc27f108769cdc7b00ba17dd41d7ecd3d2fe
-function LoadHtmlMain()
-    0r ~/.vim/template/blank.html
-    normal Gddkk
-endfunction
-
-autocmd BufNewFile *.html call LoadHtmlMain()
-" powerline
-let g:Powerline_symbols = 'fancy'
-set t_Co=256 " Explicitly tell vim that the terminal has 256 colors
+" allows cursor change in tmux mode
+if exists('$TMUX')
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+        let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+        let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
