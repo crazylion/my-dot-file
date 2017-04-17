@@ -1,0 +1,5 @@
+--skip-action-cable
+--skip-spring
+--skip-coffee
+--skip-turbolinks
+--template=https://raw.githubusercontent.com/LarvataTW/rails_template/master/template.rb

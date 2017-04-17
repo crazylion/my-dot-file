@@ -16,6 +16,14 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'dodie/vim-disapprove-deep-indentation'
 Plugin 'KurtPreston/vim-autoformat-rails'
 Plugin 'junegunn/limelight.vim'
+Plugin 'wakatime/vim-wakatime'
+
+" If installed using git
+set rtp+=~/.fzf
+"
+" " If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
