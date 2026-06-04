@@ -1,31 +1,51 @@
 set nocompatible              " be iMproved, required
-filetype on                  " required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'dodie/vim-disapprove-deep-indentation'
-Plugin 'KurtPreston/vim-autoformat-rails'
-Plugin 'junegunn/limelight.vim'
-Plugin 'wakatime/vim-wakatime'
+set encoding=utf8
+set background=dark
+call plug#begin('~/.vim/plugged')
+Plug 'sjl/gundo.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
+Plug 'mattn/emmet-vim'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/limelight.vim'
+Plug 'wakatime/vim-wakatime'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Or build from source code
+" Install yarn from https://yarnpkg.com
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'splattael/rufo-vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
+Plug 'posva/vim-vue'
+Plug 'zefei/vim-colortuner'
+Plug 'mhinz/vim-grepper'
+Plug 'mhinz/vim-signify'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'luochen1990/rainbow'
+" Optional:
+Plug 'honza/vim-snippets'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+" Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " fzf binary + base vim plugin
+Plug 'junegunn/fzf.vim'        " provides :Files, :GFiles, :Rg, etc.
+" optional for icon support
+Plug 'kyazdani42/nvim-web-devicons'
+call plug#end()
 
-" If installed using git
-set rtp+=~/.fzf
-"
-" " If installed using Homebrew
-set rtp+=/usr/local/opt/fzf
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin on           " enable filetype detection and plugins
 
 let mapleader=","       " leader is comma
 " ref: http://dougblack.io/words/a-good-vimrc.html
@@ -36,7 +56,6 @@ set expandtab       " tabs are spaces
 set number              " show line numbers
 set ai
 set cursorline          " highlight current line
-filetype indent off      " load filetype-specific indent files
 set wildmenu            " visual autocomplete for command menu
 set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
@@ -61,7 +80,8 @@ nnoremap ^ <nop>
 nnoremap gV `[v`]
 
 inoremap jj <esc>
-nnoremap <silent><F7> :NERDTree<CR>
+" NERDTree 檔案樹: F5 單鍵開關
+nnoremap <silent><F5> :NERDTreeToggle<CR>
 
 
 set backup
@@ -72,14 +92,21 @@ set writebackup
 
 set laststatus=2
 
-" CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" CtrlP settings (kept installed, but Ctrl-p is bound to fzf below)
+let g:ctrlp_map = ''
+let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_match_window = 'bottom,order:ttb'
+"let g:ctrlp_switch_buffer = 0
+"let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
+" fzf 模糊查找檔案: git repo 內用 :GFiles, 否則 :Files
+" 熱鍵: ,p  (leader 是逗號)
+" 注意: Ctrl-P 被 iShot 的全域熱鍵吃掉了(Pin 貼圖功能), 按鍵根本到不了終端機,
+"       所以平常請用 ,p。Ctrl-P 映射保留著, 哪天 iShot 改了快捷鍵它就會生效。
+nnoremap <expr> <c-p>      (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
+nnoremap <expr> <leader>p  (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
 
-let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 
 
@@ -91,3 +118,7 @@ else
         let &t_SI = "\<Esc>]50;CursorShape=1\x7"
         let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+  
+au BufNewFile,BufRead *.ejs set filetype=html
+
+autocmd FileType vue syntax sync fromstart

@@ -1,3 +1,8 @@
-Makefile
-vim/sessions/*
-vim/ruby/command-t/ext.so
+# vim 執行期目錄 (plugged/sessions/view...), 插件由 vim-plug 管理, 不進 repo
+vim/
+
+# 含 API key, 不可提交
+wakatime.cfg
+
+# claude code 本地設定
+.claude/
