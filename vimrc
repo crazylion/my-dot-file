@@ -24,9 +24,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'splattael/rufo-vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
 Plug 'posva/vim-vue'
 Plug 'zefei/vim-colortuner'
 Plug 'mhinz/vim-grepper'
@@ -34,7 +31,7 @@ Plug 'mhinz/vim-signify'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'luochen1990/rainbow'
-" Optional:
+" snippet 來源 (snipmate/UltiSnips 格式), 由 coc-snippets 讀取展開
 Plug 'honza/vim-snippets'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
@@ -106,6 +103,22 @@ let g:ctrlp_cmd = 'CtrlP'
 "       所以平常請用 ,p。Ctrl-P 映射保留著, 哪天 iShot 改了快捷鍵它就會生效。
 nnoremap <expr> <c-p>      (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
 nnoremap <expr> <leader>p  (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
+
+" coc-snippets + 補全選單的 Tab 行為:
+"   補全選單開著 -> 選下一個 / 可展開 snippet -> 展開或跳下一欄 / 其他 -> 一般 Tab
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" snippet 欄位間移動
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<s-tab>'
 
 let g:limelight_conceal_ctermfg = 240
 
