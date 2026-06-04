@@ -105,13 +105,17 @@ nnoremap <expr> <c-p>      (len(system('git rev-parse')) ? ':Files' : ':GFiles')
 nnoremap <expr> <leader>p  (len(system('git rev-parse')) ? ':Files' : ':GFiles')."\<cr>"
 
 " coc-snippets + 補全選單的 Tab 行為:
-"   補全選單開著 -> 選下一個 / 可展開 snippet -> 展開或跳下一欄 / 其他 -> 一般 Tab
+"   可展開 snippet -> 直接展開或跳下一欄 (優先, 例如打 def 後按 Tab)
+"   補全選單開著   -> 選下一個候選
+"   其他           -> 一般 Tab
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Enter 確認補全選單目前的選項 (snippet 項目確認後直接展開)
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
