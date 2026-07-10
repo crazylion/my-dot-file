@@ -43,23 +43,33 @@ ZSH_DISABLE_COMPFIX="true"
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-#PATH=/usr/local/git/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/Qt5.0.0/5.0.0/clang_64/bin:$PATH
-export PATH="/usr/local/bin:$PATH:$HOME/go/bin"
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-
-#  export GOPATH=~/go
-#alias bower=/usr/local/share/npm/lib/node_modules/bower/bin/bower
+# ---- PATH -------------------------------------------------------------------
+# All static PATH additions are consolidated here. `typeset -U path` keeps
+# entries unique (first occurrence wins), so later prepends further down the
+# file (gcloud include, ~/.local/bin/env) still take precedence without
+# creating duplicates. Prepended dirs (top) win over the system PATH; the few
+# appended dirs (bottom) are lowest priority.
+typeset -U path
+path=(
+  $HOME/.puro/bin                              # puro Flutter (must beat homebrew dart)
+  $HOME/.puro/envs/stable/flutter/bin
+  $HOME/.local/bin                             # uv / pipx / antigravity CLI
+  $HOME/.bun/bin
+  $HOME/.meteor
+  /opt/homebrew/opt/mysql-client/bin
+  $HOME/.yarn/bin
+  $HOME/.config/yarn/global/node_modules/.bin
+  /usr/local/bin
+  $path                                        # system + homebrew + oh-my-zsh
+  $HOME/go/bin                                 # appended: lowest priority
+  $HOME/.rvm/bin
+  $HOME/Library/Android/sdk/platform-tools
+)
+# -----------------------------------------------------------------------------
 
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-#export JAVA_HOME="$(/usr/libexec/java_home)"
 
-### Added by the Heroku Toolbelt
-#export PATH="/usr/local/heroku/bin:$PATH"
-#export PATH="/usr/local/sbin:/usr/local/opt/go/libexec/bin:$PATH:/Users/meng-yanglee/bin/flutter/bin"
-
-#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 man() {
@@ -74,16 +84,6 @@ man() {
             man "$@"
 }
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Lazy-load gvm (Go version manager): sourced on first `gvm` call.
-gvm() {
-  unset -f gvm
-  [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-  gvm "$@"
-}
-
 
 # Private, machine-local aliases (SSH hosts, etc.) live outside this repo so
 # they are never committed. See ~/.zsh_private.
@@ -103,11 +103,6 @@ nvm()  { _load_nvm; nvm "$@"; }
 node() { _load_nvm; node "$@"; }
 npm()  { _load_nvm; npm "$@"; }
 npx()  { _load_nvm; npx "$@"; }
-export PATH="$HOME/.meteor:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-
-
-
 
 
 
@@ -126,10 +121,8 @@ if [ -f '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/path.zsh.inc' 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 # Lazy-load rvm: sourced on first `rvm` call (previously loaded via the omz rvm
-# plugin, which was removed).
+# plugin, which was removed). ~/.rvm/bin is added in the PATH block above.
 rvm() {
   unset -f rvm
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -148,25 +141,16 @@ sdk() {
 # bun completions
 [ -s "/Users/meng-yanglee/.bun/_bun" ] && source "/Users/meng-yanglee/.bun/_bun"
 
-# bun
+# bun / android env vars (their bin dirs are added in the PATH block above)
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 . "$HOME/.local/bin/env"
-
-# puro (Flutter version manager) - must be before Homebrew dart
-export PATH="$HOME/.puro/bin:$HOME/.puro/envs/stable/flutter/bin:$PATH"
 
 if [[ "$TERM_PROGRAM" == "kiro" ]]; then
   . "$(kiro --locate-shell-integration-path zsh)"
 fi
 alias rg='/opt/homebrew/bin/rg'
-
-
-# Added by Antigravity CLI installer
-export PATH="/Users/meng-yanglee/.local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(starship init zsh)"
