@@ -34,7 +34,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Trimmed: removed ruby/rails/capistrano/rake/rvm/yii2/vundle (legacy, unused).
 # Re-add any you still need. rvm/nvm are lazy-loaded below instead of via plugin.
-plugins=(git brew pip ssh-agent git-flow composer)
+plugins=(git brew pip ssh-agent git-flow)
 export LANG=zh_TW.UTF-8
 
 # Skip the compaudit permission check on every startup (was ~30ms). Safe on a
@@ -62,6 +62,7 @@ path=(
   /usr/local/bin
   $path                                        # system + homebrew + oh-my-zsh
   $HOME/go/bin                                 # appended: lowest priority
+  $HOME/.composer/vendor/bin                   # composer global bins (was set by the omz composer plugin)
   $HOME/.rvm/bin
   $HOME/Library/Android/sdk/platform-tools
 )
