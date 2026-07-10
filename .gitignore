@@ -6,3 +6,6 @@ wakatime.cfg
 
 # claude code 本地設定
 .claude/
+
+# gcloud SDK 安裝在 repo 目錄內, 屬於安裝產物不進 repo
+google-cloud-sdk/
