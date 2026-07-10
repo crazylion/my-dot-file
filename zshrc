@@ -85,10 +85,9 @@ gvm() {
 }
 
 
-alias larvata="ssh <REDACTED>"
-alias bx="ssh <REDACTED>"
-alias innerlarvata="ssh <REDACTED> "
-alias innerbx="ssh <REDACTED>"
+# Private, machine-local aliases (SSH hosts, etc.) live outside this repo so
+# they are never committed. See ~/.zsh_private.
+[ -f "$HOME/.zsh_private" ] && source "$HOME/.zsh_private"
 
 
 
