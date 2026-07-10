@@ -106,15 +106,15 @@ npx()  { _load_nvm; npx "$@"; }
 
 ## [Completion]
 ## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/meng-yanglee/.dart-cli-completion/zsh-config.zsh ]] && . /Users/meng-yanglee/.dart-cli-completion/zsh-config.zsh
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh"
 ## [/Completion]
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/project/my-dot-file/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/project/my-dot-file/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/meng-yanglee/project/my-dot-file/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/project/my-dot-file/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/project/my-dot-file/google-cloud-sdk/completion.zsh.inc"; fi
 
 # Lazy-load rvm: sourced on first `rvm` call (previously loaded via the omz rvm
 # plugin, which was removed). ~/.rvm/bin is added in the PATH block above.
@@ -134,7 +134,7 @@ sdk() {
 }
 
 # bun completions
-[ -s "/Users/meng-yanglee/.bun/_bun" ] && source "/Users/meng-yanglee/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun / android env vars (their bin dirs are added in the PATH block above)
 export BUN_INSTALL="$HOME/.bun"
