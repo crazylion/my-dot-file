@@ -3,3 +3,10 @@
 import = [
   "tokyo-night.toml",
 ]
+
+[font]
+# Nerd Font so starship's icons render. "Mono" variant keeps icons to a
+# single cell width for clean grid alignment. Bold/italic are derived from
+# the same family automatically.
+size = 13.0
+normal = { family = "MesloLGS Nerd Font Mono" }
