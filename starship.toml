@@ -59,6 +59,9 @@ format = "[$symbol($version )]($style)"
 symbol = " "
 style = "red"
 format = "[$symbol($version )]($style)"
+# rvm exports RUBY_VERSION globally; ignore env vars so ruby only shows inside
+# an actual ruby project (Gemfile/.ruby-version/*.rb/Rakefile).
+detect_variables = []
 
 [php]
 symbol = " "
