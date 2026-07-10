@@ -1,0 +1,5 @@
+[general]
+# Relative to this file's directory, so no hardcoded username / machine path.
+import = [
+  "tokyo-night.toml",
+]
