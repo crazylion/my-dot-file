@@ -2,8 +2,6 @@ set nocompatible              " be iMproved, required
 set encoding=utf8
 set background=dark
 call plug#begin('~/.vim/plugged')
-Plug 'sjl/gundo.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
 Plug 'majutsushi/tagbar'
@@ -11,10 +9,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/limelight.vim'
 Plug 'wakatime/vim-wakatime'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
@@ -38,8 +35,6 @@ Plug 'thosakwe/vim-flutter'
 " Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }  " fzf binary + base vim plugin
 Plug 'junegunn/fzf.vim'        " provides :Files, :GFiles, :Rg, etc.
-" optional for icon support
-Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 filetype plugin on           " enable filetype detection and plugins
@@ -89,14 +84,6 @@ set writebackup
 
 set laststatus=2
 
-" CtrlP settings (kept installed, but Ctrl-p is bound to fzf below)
-let g:ctrlp_map = ''
-let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_match_window = 'bottom,order:ttb'
-"let g:ctrlp_switch_buffer = 0
-"let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-
 " fzf 模糊查找檔案: git repo 內用 :GFiles, 否則 :Files
 " 熱鍵: ,p  (leader 是逗號)
 " 注意: Ctrl-P 被 iShot 的全域熱鍵吃掉了(Pin 貼圖功能), 按鍵根本到不了終端機,
@@ -125,6 +112,9 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
 let g:limelight_conceal_ctermfg = 240
+
+" rainbow: 彩色括號配對 (luochen1990/rainbow), 需設此旗標才會啟用
+let g:rainbow_active = 1
 
 
 " allows cursor change in tmux mode
