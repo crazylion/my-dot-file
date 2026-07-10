@@ -67,11 +67,6 @@ path=(
 )
 # -----------------------------------------------------------------------------
 
-export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
 man() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -147,9 +142,6 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 . "$HOME/.local/bin/env"
 
-if [[ "$TERM_PROGRAM" == "kiro" ]]; then
-  . "$(kiro --locate-shell-integration-path zsh)"
-fi
 alias rg='/opt/homebrew/bin/rg'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
