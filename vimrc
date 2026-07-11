@@ -9,7 +9,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/limelight.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'airblade/vim-gitgutter'
@@ -22,8 +21,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'splattael/rufo-vim'
 Plug 'posva/vim-vue'
-Plug 'zefei/vim-colortuner'
-Plug 'mhinz/vim-grepper'
 Plug 'mhinz/vim-signify'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -74,6 +71,8 @@ nnoremap gV `[v`]
 inoremap jj <esc>
 " NERDTree 檔案樹: F5 單鍵開關
 nnoremap <silent><F5> :NERDTreeToggle<CR>
+" Tagbar 標籤側邊欄 (需 ctags): F8 單鍵開關
+nnoremap <silent><F8> :TagbarToggle<CR>
 
 
 set backup
@@ -110,8 +109,6 @@ endfunction
 " snippet 欄位間移動
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
-
-let g:limelight_conceal_ctermfg = 240
 
 " rainbow: 彩色括號配對 (luochen1990/rainbow), 需設此旗標才會啟用
 let g:rainbow_active = 1
