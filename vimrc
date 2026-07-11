@@ -21,7 +21,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'splattael/rufo-vim'
 Plug 'posva/vim-vue'
-Plug 'mhinz/vim-signify'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'luochen1990/rainbow'
